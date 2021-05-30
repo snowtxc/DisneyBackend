@@ -1,19 +1,12 @@
-//router.get("/movies", MoviesController.getAll); V
-//router.post("/movies", MoviesController.create); V
-//router.put("/movies/:id", MoviesController.edit); V
-//router.delete("/movies/:id", MoviesController.delete); V
-//router.get("/movies/:id/detail", MoviesController.getMovieDetail); V
-//router.get("/movies/:title/detail",MoviesController.getByTitle); V
-//router.get("/movies/:idGenero/:genero", MoviesController.getGenero); V
-//router.get("/movies/:order", MoviesController.getAllOrder); V
+
 
 //Functions
 const checkIfIsImage = require("../functions/checkIfIsImage");
 const handleFatalError = require("../functions/handleFatalError");
 
 //Models
-const MovieModel = require("../models/Cinematografia");
-const CharacterModel = require("../models/Personaje");
+const MovieModel = require("../models/Movie");
+const CharacterModel = require("../models/Character");
 const UserController = require("./UserController");
 
 var MoviesController = {
@@ -138,7 +131,7 @@ var MoviesController = {
     
 
         MovieModel.findAll({order: [['createdAt',orderUpper]]}).then((result) =>{
-            console.log(result);
+             response.status(200).send(result);
         }).catch((error) =>{
             handleFatalError(error);
             response.status(500).send("Something broken!");

@@ -1,6 +1,9 @@
 const router = require("express").Router();
 const MoviesController = require("../controllers/MoviesControlles");
 
+//Middlewares
+const verifyToken = require("../middlewares/verifyToken");
+
 router.get("/movies",MoviesController.getAll);
 router.post("/movies",MoviesController.create);
 router.put("/movies/:id",MoviesController.edit);

@@ -2,7 +2,7 @@ const server = require("./server");
 const PORT = 3703;
 
 const database = require("./database");
-const emailService = require("./emailService");
+
 
 const associate = require("./associates");
 const { sequelize } = require("./models/Usuarios");

@@ -13,7 +13,7 @@ function generateHash(value){
 
 }
 
-const Usuario = conexion.define("User",{
+const User = conexion.define("User",{
     email:{
         type: DataTypes.STRING,
         allowNull: false,
@@ -43,7 +43,7 @@ const Usuario = conexion.define("User",{
 })
 
 
-Usuario.prototype.validateUser = function (email,password,callback) {
+User.prototype.validateUser = function (email,password,callback) {
     let authenticated;
     Usuario.findOne({where: {email:email}}).then(async (result) =>{
         if(result){
@@ -67,5 +67,5 @@ Usuario.prototype.validateUser = function (email,password,callback) {
 
 
 
-Usuario.sync();
-module.exports = Usuario;
+User.sync();
+module.exports = User;

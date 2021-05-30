@@ -1,16 +1,19 @@
 const jwt = require("jsonwebtoken");
 const UserModel = require("../models/Usuarios");
 const handleFatalError = require("../functions/handleFatalError");
+const emailService = require("../emailService");
+
 
 var UserController ={
-    signUp:  function(request,response){
+    signUp: async function(request,response){
         const body = request.body;
-        console.log(body);
+
 
         UserModel.create({email: body.email,password: body.password,username: body.username}).then((user) =>{
             const iduser = user.dataValues.id;
             const token = jwt.sign(iduser,"user_key");
 
+            emailService.sendWelcomeMsg(user.email,user.username);
             response.status(200).send({
                 msg: "Usuario registrado correctamente",
                 token: token
@@ -18,14 +21,13 @@ var UserController ={
 
         }).catch((error) =>{
             handleFatalError(error);
-            console.log("Ha ocurrido un error!");
             response.status(500).send("Something broken!");
             
         })
     },
 
 
-    signIn: function(request,response){
+    signIn: async function(request,response){
         const body = request.body;
         UserModel.prototype.validateUser(body.email,body.password,(err,authenticated,user) =>{
 

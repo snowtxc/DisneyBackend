@@ -1,19 +1,11 @@
-//router.get("/characters", CharacterController.getAll);    V
-//router.post("/characters", CharacterController.create);   V
-//router.delete("/characters/:id", CharacterController.delete);  V
-//router.put("/characters/:id", CharacterController.edit); V
-//router.get("characters/:id/detail", CharacterController.getCharacterDetail); V
-//router.get("characters/:name/name", CharacterController.getByName); V
-//router.get("characters/:age/age", CharacterController.getByAge); V
-//router.get("characters/:movieID/movie", CharacterController.getByMovie); V
 
 //functions
 const handleFatalError = require("../functions/handleFatalError");
 const checkIfIsImage = require("../functions/checkIfIsImage");
 
 //Models
-const CharacterModel = require("../models/Personaje");
-const MovieModel = require("../models/Cinematografia");
+const CharacterModel = require("../models/Character");
+const MovieModel = require("../models/Movie");
 const e = require("express");
 const UserController = require("./UserController");
 
@@ -24,7 +16,7 @@ var CharacterController = {
         await CharacterModel.findAll({attributes: ['name','urlimage']}).then((result) =>{
             response.status(200).send(result)
         }).catch((error) =>{
-            handleFatalError(err);
+            handleFatalError(error);
         })
     },
 
