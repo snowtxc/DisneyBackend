@@ -16,7 +16,7 @@ const Cinematografia = conexion.define("Cinematografia",{
         }
     },
     image: {
-        type: DataTypes.STRING,
+        type: DataTypes.STRING, 
         allowNull: false, 
     },  
     generoID:{

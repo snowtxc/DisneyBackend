@@ -38,7 +38,6 @@ var UserController ={
                  response.status(200).send({
                          msg: "Succes Authenticate",
                          token: token
-
                  })
             }
         });

@@ -21,14 +21,8 @@ const UserController = require("./UserController");
 var CharacterController = {
 
     getAll: async function(request,response){
-        let charactersArr = [];
         await CharacterModel.findAll({attributes: ['name','urlimage']}).then((result) =>{
-            result.forEach((item) =>{
-                charactersArr.push(item.dataValues);
-            })
-            response.status(200).send({
-                characters: charactersArr
-            })
+            response.status(200).send(result)
         }).catch((error) =>{
             handleFatalError(err);
         })

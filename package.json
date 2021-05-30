@@ -19,6 +19,7 @@
     "express-fileupload": "^1.2.1",
     "jsonwebtoken": "^8.5.1",
     "mysql2": "^2.2.5",
+    "sendgrid-v3-node": "^1.0.4",
     "sequelize": "^6.6.2"
   },
   "devDependencies": {
